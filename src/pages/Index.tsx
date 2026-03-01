@@ -2,7 +2,7 @@ import { useState } from "react";
 import GameMenu from "@/components/game/GameMenu";
 import GameBoard from "@/components/game/GameBoard";
 
-export type GameMode = "pass-and-play" | "vs-computer" | "offline";
+export type GameMode = "pass-and-play" | "offline";
 
 const Index = () => {
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
