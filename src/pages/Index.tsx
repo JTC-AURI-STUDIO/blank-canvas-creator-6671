@@ -1,21 +1,17 @@
 import { useState } from "react";
-import ConnectForm from "@/components/ConnectForm";
-import ChatInterface from "@/components/ChatInterface";
+import GameMenu from "@/components/game/GameMenu";
+import GameBoard from "@/components/game/GameBoard";
+
+export type GameMode = "pass-and-play" | "vs-computer" | "offline";
 
 const Index = () => {
-  const [connection, setConnection] = useState<{ repoUrl: string; token: string } | null>(null);
+  const [gameMode, setGameMode] = useState<GameMode | null>(null);
 
-  if (connection) {
-    return (
-      <ChatInterface
-        repoUrl={connection.repoUrl}
-        token={connection.token}
-        onDisconnect={() => setConnection(null)}
-      />
-    );
+  if (gameMode) {
+    return <GameBoard mode={gameMode} onBack={() => setGameMode(null)} />;
   }
 
-  return <ConnectForm onConnected={(repoUrl, token) => setConnection({ repoUrl, token })} />;
+  return <GameMenu onSelectMode={setGameMode} />;
 };
 
 export default Index;
